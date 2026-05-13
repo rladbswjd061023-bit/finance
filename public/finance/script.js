@@ -1,146 +1,25 @@
-const interest = document.getElementById("interest");
-const housing = document.getElementById("housing");
-const support = document.getElementById("support");
+function analyzePolicy() {
+    // 1. 입력값 가져오기
+    const h = parseFloat(document.getElementById('households').value);
+    const i = parseFloat(document.getElementById('interestGap').value);
+    
+    // 2. PPT 예산 산정 산식
+    // (5억 * 금리차 3%) * 10만 가구 = 1.5조원
+    const perSavings = (500000000 * (i / 100)) / 10000; // 가구당 지원액(만원)
+    const totalBudget = (500000000 * (i / 100) * (h * 10000)) / 100000000; // 총 예산(억원)
 
-const interestVal = document.getElementById("interestVal");
-const housingVal = document.getElementById("housingVal");
-const supportVal = document.getElementById("supportVal");
-
-const fertilityRate = document.getElementById("fertilityRate");
-const seoulRate = document.getElementById("seoulRate");
-const birthIncrease = document.getElementById("birthIncrease");
-const budget = document.getElementById("budget");
-
-const ctx = document.getElementById("birthChart");
-
-const labels = [
-  "2024",
-  "2025",
-  "2026",
-  "2027",
-  "2028",
-  "2029",
-  "2030"
-];
-
-const baseNation = [
-  0.72,
-  0.71,
-  0.70,
-  0.69,
-  0.68,
-  0.67,
-  0.66
-];
-
-const baseSeoul = [
-  0.55,
-  0.54,
-  0.53,
-  0.52,
-  0.51,
-  0.50,
-  0.49
-];
-
-const chart = new Chart(ctx, {
-
-  type:'line',
-
-  data:{
-    labels:labels,
-
-    datasets:[
-      {
-        label:'전국 출산율',
-        data:[...baseNation],
-        borderWidth:4,
-        tension:0.3
-      },
-
-      {
-        label:'서울 출산율',
-        data:[...baseSeoul],
-        borderWidth:4,
-        tension:0.3
-      }
-    ]
-  },
-
-  options:{
-    responsive:true,
-
-    scales:{
-      y:{
-        min:0.4,
-        max:1.2
-      }
-    }
-  }
-});
-
-function updateSimulation(){
-
-  const i = Number(interest.value);
-  const h = Number(housing.value);
-  const s = Number(support.value);
-
-  interestVal.innerText = i;
-  housingVal.innerText = h;
-  supportVal.innerText = s;
-
-  const effect =
-      (i * 0.0012) +
-      (h * 0.0018) +
-      (s * 0.001);
-
-  const updatedNation = baseNation.map((v,index)=>{
-      return Number(
-          (v + effect * index).toFixed(2)
-      );
-  });
-
-  const updatedSeoul = baseSeoul.map((v,index)=>{
-      return Number(
-          (v + effect * 1.2 * index).toFixed(2)
-      );
-  });
-
-  chart.data.datasets[0].data = updatedNation;
-  chart.data.datasets[1].data = updatedSeoul;
-
-  chart.update();
-
-  fertilityRate.innerText =
-      updatedNation[6].toFixed(2);
-
-  seoulRate.innerText =
-      updatedSeoul[6].toFixed(2);
-
-  const births =
-      15000 +
-      (i * 100) +
-      (h * 180) +
-      (s * 90);
-
-  birthIncrease.innerText =
-      "+" +
-      (births / 10000).toFixed(1)
-      + "만";
-
-  const totalBudget =
-      3 +
-      (i * 0.015) +
-      (h * 0.025) +
-      (s * 0.01);
-
-  budget.innerText =
-      totalBudget.toFixed(1)
-      + "조";
+    // 3. 분석 결과 출력
+    const resultBox = document.getElementById('analysisResult');
+    resultBox.innerHTML = `
+        <p><strong>[정책 타당성 분석 리포트]</strong></p>
+        <p>지원 대상 <strong>${h}만 가구</strong>에 대하여 <strong>${i}%p</strong>의 금리 혜택을 보전할 경우:</p>
+        <p>• 가구당 연간 이자 지원액: <span class="highlight">${Math.floor(perSavings).toLocaleString()}만원</span></p>
+        <p>• 총 연간 소요 예산: <span class="highlight">${Math.floor(totalBudget * 1000).toLocaleString()}억원</span></p>
+        <div class="insight">
+            <strong>금융공학적 분석 제언:</strong><br>
+            ${totalBudget * 1000 > 20000 ? 
+            "⚠️ 현재 재정 투입 규모가 GDP 대비 예산 비중을 상회할 우려가 있습니다. 대상을 출산 1년 이내 가구로 선별하여 타겟팅할 것을 제안합니다." : 
+            "✅ 안정적인 재정 운용 범위 내에서 신혼부부의 가처분 소득을 증대시켜 실질적인 출산 유인 효과를 기대할 수 있는 최적의 정책 규모입니다."}
+        </div>
+    `;
 }
-
-interest.addEventListener("input",updateSimulation);
-housing.addEventListener("input",updateSimulation);
-support.addEventListener("input",updateSimulation);
-
-updateSimulation();

@@ -1,91 +1,12 @@
-body{
-    margin:0;
-    padding:30px;
-    background:#f4f6fb;
-    font-family:sans-serif;
-}
-
-.container{
-    max-width:1400px;
-    margin:auto;
-}
-
-h1{
-    color:#1f2f6f;
-    margin-bottom:10px;
-}
-
-.subtitle{
-    color:#666;
-    margin-bottom:35px;
-}
-
-.layout{
-    display:flex;
-    gap:30px;
-}
-
-.control-panel{
-    width:340px;
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
-}
-
-.slider-box{
-    margin-bottom:35px;
-}
-
-.slider-box label{
-    display:block;
-    font-weight:bold;
-    margin-bottom:12px;
-}
-
-.slider-box input{
-    width:100%;
-}
-
-.value{
-    margin-top:8px;
-    font-size:20px;
-    font-weight:bold;
-    color:#3248a8;
-}
-
-.result-grid{
-    margin-top:40px;
-}
-
-.result-card{
-    background:#eef2ff;
-    padding:18px;
-    border-radius:14px;
-    margin-bottom:15px;
-    text-align:center;
-}
-
-.result-card small{
-    color:#555;
-}
-
-.result-card h2{
-    margin-top:10px;
-    font-size:32px;
-    color:#1f2f6f;
-}
-
-.chart-panel{
-    flex:1;
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
-}
-
-.notes{
-    margin-top:20px;
-    color:#666;
-    line-height:1.8;
-}
+body { font-family: 'Pretendard', sans-serif; background: #eef2f7; display: flex; justify-content: center; padding: 40px; }
+.container { width: 650px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+header { border-bottom: 2px solid #1e3799; margin-bottom: 30px; padding-bottom: 10px; }
+h2 { color: #1e3799; margin: 0; }
+.input-panel { display: flex; gap: 15px; margin-bottom: 30px; align-items: flex-end; }
+.input-group { flex: 1; }
+label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
+input { width: 100%; padding: 10px; border: 1px solid #dcdde1; border-radius: 8px; }
+button { padding: 10px 20px; background: #1e3799; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.report-box { padding: 30px; background: #f8f9fa; border-radius: 12px; border-left: 6px solid #1e3799; }
+.highlight { color: #1e3799; font-weight: 800; font-size: 1.2rem; }
+.insight { margin-top: 15px; padding: 15px; background: #e8f0fe; border-radius: 8px; border: 1px solid #cce5ff; }
