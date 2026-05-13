@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>신생아 홈런 대출 정책 시뮬레이터</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>신생아 홈런(Loans) 대출 정책 시뮬레이터</h1>
+
+  <p class="subtitle">
+    정책 강도 변화에 따른 출산율 및 경제 효과 분석
+  </p>
+
+  <div class="layout">
+
+    <div class="control-panel">
+
+      <div class="slider-box">
+        <label>저금리 지원 확대</label>
+
+        <input type="range"
+               id="interest"
+               min="0"
+               max="100"
+               value="40">
+
+        <div class="value">
+          <span id="interestVal">40</span>%
+        </div>
+      </div>
+
+      <div class="slider-box">
+        <label>주거 대출 한도 확대</label>
+
+        <input type="range"
+               id="housing"
+               min="0"
+               max="100"
+               value="50">
+
+        <div class="value">
+          <span id="housingVal">50</span>%
+        </div>
+      </div>
+
+      <div class="slider-box">
+        <label>육아 지원 대상 확대</label>
+
+        <input type="range"
+               id="support"
+               min="0"
+               max="100"
+               value="30">
+
+        <div class="value">
+          <span id="supportVal">30</span>%
+        </div>
+      </div>
+
+      <div class="result-grid">
+
+        <div class="result-card">
+          <small>전국 예상 출산율</small>
+          <h2 id="fertilityRate">0.81</h2>
+        </div>
+
+        <div class="result-card">
+          <small>서울 예상 출산율</small>
+          <h2 id="seoulRate">0.63</h2>
+        </div>
+
+        <div class="result-card">
+          <small>예상 출생아 증가</small>
+          <h2 id="birthIncrease">+2.1만</h2>
+        </div>
+
+        <div class="result-card">
+          <small>정책 예상 예산</small>
+          <h2 id="budget">5.2조</h2>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="chart-panel">
+
+      <canvas id="birthChart"></canvas>
+
+      <div class="notes">
+        <p>• 서울의 주거비 부담 완화 시 출산율 회복 폭 증가</p>
+        <p>• 정책 강도에 따라 2030 예상 출산율 변화</p>
+        <p>• 에코붐 착시 제거 후 구조적 감소 추세 반영</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
